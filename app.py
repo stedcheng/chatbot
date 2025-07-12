@@ -151,8 +151,8 @@ Input: {input_tokens}''')
 ##            with col2:
 ##                st.write(output_tokens)
 
-            with st.chat_message('user'):
-                st.write(prompt)
+            with st.chat_message('ai'):
+                st.write(response)
             st.session_state.total_tokens[-1] += output_tokens
             st.write(f'A total of {st.session_state.total_tokens[-1]} have been used')
 
