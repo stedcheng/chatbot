@@ -7,7 +7,7 @@ from matplotlib.ticker import MaxNLocator
 # from llama_ccp import Llama
 # import os
 # import multiprocessing
-import time
+import time 
 
 ### Silence errors
 ##os.environ["LLAMA_CPP_LOG_LEVEL"] = "ERROR"
@@ -17,7 +17,7 @@ import time
 ##
 ### === Load DeepSeek Chat GGUF model ===
 ##llm = Llama(
-##    model_path=r"C:\Users\Sted\Documents\Ateneo\Y5S0\CSCI 217\20250711\deepseek-llm-7b-chat.Q4_K_M.gguf",
+##    model_path=r"C:\Users\Sted\Documents\Ateneo\Y5S0\CSCI 217\20250711 Activity 3\deepseek-llm-7b-chat.Q4_K_M.gguf",
 ##    n_ctx=4096,
 ##    n_threads=NUM_THREADS,
 ##    use_mlock=True,
@@ -79,9 +79,7 @@ if st.session_state.active == 1:
     if user_input is not None:
         if user_input.lower() in ['quit', 'stop', 'exit']:
             st.session_state.active = 0
-            st.write('Thank you for chatting')
-            st.write(f'In this chat, a total of {st.session_state.total_tokens[-1]} have been used')
-            st.write(f'You have {available_tokens-st.session_state.total_tokens[-1]} remaining')
+            st.rerun()
             
     if user_input and st.session_state.active == 1:
         st.session_state.conversations.append((user_input, ''))
@@ -155,6 +153,11 @@ Input: {input_tokens}''')
                 st.write(response)
             st.session_state.total_tokens[-1] += output_tokens
             st.write(f'A total of {st.session_state.total_tokens[-1]} have been used')
+
+else:
+    st.write('Thank you for chatting')
+    st.write(f'In this chat, a total of {st.session_state.total_tokens[-1]} have been used')
+    st.write(f'You have {available_tokens-st.session_state.total_tokens[-1]} remaining')
 
 data = [
     st.session_state.input_tokens[1:],
